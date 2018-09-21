@@ -1,0 +1,11 @@
+build
+build.properties
+token.properties
+.DS_Store
+target
+token.bak.properties
+
+# eclipse files
+.classpath
+.settings
+.project
