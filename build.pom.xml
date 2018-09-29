@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<project name="Auto Pilot" basedir=".">
+    <!-- property file defining the component's dependencies -->
+    <property file="build.properties"/>
+
+    <property name="token.properties" value="${online_review_home}/token.properties"/>
+
+    <!-- DIRECTORY SETUP -->
+    <property name="builddir" value="target"/>
+    <property name="build_distdir" value="${builddir}/dist"/>
+
+    <property name="auto_pilot1.jar" value="${build_distdir}/auto_pilot1.jar" />
+
+    <!-- replaces variables in configuration files with values for the target environment -->
+    <target name="tokenize"
+            description="Initializes the configuration files for Auto Pilot with parameters set in token.properties file">
+
+        <copy todir="${build_distdir}" overwrite="true">
+            <fileset dir=".">
+                <include name="**/*.txt"/>
+                <include name="**/*.properties"/>
+                <include name="**/*.xml"/>
+                <exclude name="build.xml"/>
+                <exclude name="build.pom.xml"/>
+                <exclude name="run-pom.xml"/>
+                <exclude name="pom.xml"/>
+                <exclude name="token.properties"/>
+            </fileset>
+        </copy>
+
+        <replace dir="${build_distdir}" replacefilterfile="${token.properties}">
+            <include name="**/*.properties"/>
+            <include name="**/*.xml"/>
+            <include name="**/*template.txt"/>
+        </replace>
+    </target>
+</project>

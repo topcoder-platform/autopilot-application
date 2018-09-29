@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>autopilot</groupId>
+  <artifactId>run-ap</artifactId>
+  <version>1.0</version>
+
+  <name>Autopilot Application</name>
+  <url>http://software.topcoder.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+    <repository>
+      <id>temp-maven-repo</id>
+      <url>https://github.com/coderReview/temp-maven-repo/raw/master</url>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>JBoss repository</id>
+      <url>https://repository.jboss.org</url>
+    </repository>
+    <repository>
+      <id>JBoss old repository</id>
+      <url>https://maven-us.nuxeo.org/nexus/content/groups/public</url>
+    </repository>
+    <repository>
+      <id>Spring Plugins</id>
+      <url>http://repo.spring.io/plugins-release</url>
+    </repository>
+  </repositories>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>1.6.0</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>exec</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <executable>java</executable>
+            <arguments>
+              <argument>-classpath</argument>
+              <argument>.${path.separator}lib/*</argument>
+              <argument>com.topcoder.management.phase.autopilot.AutoPilotUtility</argument>
+              <argument>-config</argument>
+              <argument>auto_pilot.xml</argument>
+              <argument>-namespace</argument>
+              <argument>AutoPilotJob</argument>
+              <argument>-autopilot</argument>
+              <argument>com.topcoder.management.phase.autopilot.AutoPilot</argument>
+              <argument>-poll</argument>
+              <argument>${env.POLL_INTERVAL}</argument>
+            </arguments>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
