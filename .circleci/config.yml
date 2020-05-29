@@ -48,6 +48,7 @@ build_steps: &build_steps
     - run:
         name: Fetching dependent repository
         command: | 
+          source awsenvconf        
           mkdir -p ./../online_review
           cd ./../online_review
           git clone --branch $SUBMODULE_BRANCH https://github.com/topcoder-platform/tc-online-review.git .
