@@ -40,23 +40,25 @@ build_steps: &build_steps
         command: |
           ./awsconfiguration.sh $BUILD_ENV
           source awsenvconf  
-    # - run:
-    #     name: Getting properties and dependent
-    #     command: |
-    #       source awsenvconf
-    #       # ./buildproperties.sh -e $BUILD_ENV -k autopilotlib
-    # - run:
-    #     name: Fetching Libraries
-    #     command: |
-    #       mkdir -p ../tcs/lib
-    #       git clone https://github.com/topcoder-platform/tc-java-component-libs.git -b $SUBMODULE_BRANCH ../tcs/lib/
-    #       mkdir -p ../tcs/lib/third_party/cobertura/1.8
-    #       unzip cobertura18.zip 
-    #       cp -rvf 1.8/* ../tcs/lib/third_party/cobertura/1.8/                                 
+    - run:
+        name: Getting properties and dependent
+        command: |
+          source awsenvconf
+          ./buildproperties.sh -e $BUILD_ENV -k autopilotapp
+    - run:
+        name: Fetching dependent repository
+        command: | 
+          mkdir -p ./../online_review
+          cd ./../online_review
+          git clone --branch $SUBMODULE_BRANCH https://github.com/topcoder-platform/tc-online-review.git .
+          sed -i "s/master/$SUBMODULE_BRANCH/g" .gitmodules 
+          git submodule init
+          git submodule update --remote
+          ./buildproperties.sh -e $BUILD_ENV  -k onlinereviewapp                            
     - run:
         name: Installation of build dependencies.
         command: |
-          source awsenvconf
+          # source awsenvconf
           # ./buildproperties.sh -e $BUILD_ENV -k onlinereviewapp
           ant clean dist
     # - run:
@@ -82,7 +84,7 @@ jobs:
       LBUILD_ENV: "dev"
       SUBMODULE_BRANCH: "dev"
       DEPLOY_ENV: "DEV"
-      APPNAME: "autopilot"
+      APPNAME: "autopilot-app"
     steps: *build_steps
 
   "build-prod":
@@ -92,7 +94,7 @@ jobs:
       LBUILD_ENV: "prod" 
       DEPLOY_ENV: "PROD"      
       SUBMODULE_BRANCH: "prod" 
-      APPNAME: "autopilot"                
+      APPNAME: "autopilot-app"                
     steps: *build_steps      
 
 workflows:
