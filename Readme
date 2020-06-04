@@ -22,3 +22,4 @@ Notes: Most namespaces of this OnlineReview.xml are the same as OnlineReview.xml
 
 Notes: empty com\topcoder\util\config\ConfigManager.properties is just used to avoid configuration exception stacktrace display, is optional
 
+ 
