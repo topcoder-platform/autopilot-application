@@ -13,6 +13,7 @@ create_cdpacakge()
   mkdir -p $PACKAGEPATH
   cp -Rvf $SCRIPTDIR/* $PACKAGEPATH/
   cp $APJAR_SRC $PACKAGEPATH/
+  cp build.xml $PACKAGEPATH/ 
   zip -j $AWS_CD_PACKAGE_NAME $PACKAGEPATH/*
 }
 
