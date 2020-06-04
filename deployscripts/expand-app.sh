@@ -1,3 +1,3 @@
 #!/bin/bash
 cd /home/apps/auto_pilot
-ant deploy
+/usr/apache-ant-1.6.5/bin/ant deploy
