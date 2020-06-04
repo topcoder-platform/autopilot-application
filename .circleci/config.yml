@@ -69,11 +69,11 @@ build_steps: &build_steps
         name: "Deployment OR app and direct web"
         command: |
           source awsenvconf
-    #       ./buildenv.sh -e $DEPLOY_ENV -b ${APPNAME}-deployvar
-    #       source buildenvvar
-    #       source apppackagever          
-    #       echo "executing deploy"
-    #       ./deploy.sh $BUILD_ENV $APAPPVER $APPNAME
+          ./buildenv.sh -e $DEPLOY_ENV -b ${APPNAME}-deployvar
+          source buildenvvar
+          source apppackagever          
+          echo "executing deploy"
+          ./deploy.sh $BUILD_ENV $APAPPVER $APPNAME
 
 
 jobs:

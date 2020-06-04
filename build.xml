@@ -185,12 +185,12 @@
 
     <target name="deploy" description="Deploys Auto Pilot to target directory">
         <mkdir dir="${deploy-dir}"/>
-        <unjar src="${build_distdir}/auto_pilot_app.jar" dest="${deploy-dir}/lib">
+        <unjar src="${deploy-srcdir}/auto_pilot_app.jar" dest="${deploy-dir}/lib">
             <patternset>
                 <include name="**/*.jar"/>
             </patternset>
         </unjar>
-        <unjar src="${build_distdir}/auto_pilot_app.jar" dest="${deploy-dir}">
+        <unjar src="${deploy-srcdir}/auto_pilot_app.jar" dest="${deploy-dir}">
             <patternset>
                 <include name="**/*.xml"/>
                 <include name="**/*.txt"/>
