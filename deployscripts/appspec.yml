@@ -1,0 +1,27 @@
+version: 0.0
+os: linux
+files:
+  - source: ./auto_pilot_app.jar
+    destination: /home/apps/auto_pilot/dist
+  - source: ./build.xml
+    destination: /home/apps/auto_pilot   
+permissions:
+  - object: /home/apps/auto_pilot/dist
+    pattern: "auto_pilot_app.jar"
+    owner: apps
+    group: apps
+  - object: /home/apps/auto_pilot
+    pattern: "build.xml"
+    owner: apps
+    group: apps    
+hooks:
+  ApplicationStop:
+    - location: appstop.sh
+      runas: apps
+  AfterInstall:
+    - location: expand-app.sh
+      runas: apps
+  ApplicationStart: 
+    - location: appstart.sh
+      runas: apps
+
