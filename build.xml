@@ -14,7 +14,7 @@
     <taskdef resource="net/sf/antcontrib/antlib.xml" classpath="${ant-contrib.jar}"/>
 
     <!-- DIRECTORY SETUP -->
-    <property name="javamain" value="${online_review_home}/src/main/java/com/cronos/onlinereview/phases"/>
+    <property name="javamain" value="${online_review_home}/src/java/main/com/cronos/onlinereview/phases"/>
 
     <property name="builddir" value="${online_review_home}/build/ant/auto_pilot"/>
     <property name="build_classdir" value="${builddir}/classes"/>
@@ -185,12 +185,12 @@
 
     <target name="deploy" description="Deploys Auto Pilot to target directory">
         <mkdir dir="${deploy-dir}"/>
-        <unjar src="${build_distdir}/auto_pilot_app.jar" dest="${deploy-dir}/lib">
+        <unjar src="${deploy-srcdir}/auto_pilot_app.jar" dest="${deploy-dir}/lib">
             <patternset>
                 <include name="**/*.jar"/>
             </patternset>
         </unjar>
-        <unjar src="${build_distdir}/auto_pilot_app.jar" dest="${deploy-dir}">
+        <unjar src="${deploy-srcdir}/auto_pilot_app.jar" dest="${deploy-dir}">
             <patternset>
                 <include name="**/*.xml"/>
                 <include name="**/*.txt"/>
