@@ -1,4 +1,4 @@
-. Configure correct DBConnectionFactoryImpl, email settting, log settting in OnlineReview.xml
+. Configure correct DBConnectionFactoryImpl, email settting, log settting in OnlineReview.xml 
 
 Notes: Most namespaces of this OnlineReview.xml are the same as OnlineReview.xml of OR application. except web app specific namespace as below
 
